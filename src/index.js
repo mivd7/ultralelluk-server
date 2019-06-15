@@ -32,6 +32,7 @@ const resolvers = {
       })
     },
     createDraft: (parent, { title, content, published, userId }, context) => {
+      console.log(title)
       return context.prisma.createPost({
         title,
         content,
