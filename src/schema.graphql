@@ -1,0 +1,69 @@
+scalar DateTime
+scalar Time
+
+type Query {
+  feedPosts: [Post!]!
+  filterPosts(searchString: String): [Post!]!
+  post(id: ID!): Post
+}
+
+type Mutation {
+  signupUser(email: String!, name: String): User!
+  #later userid mee geven
+  createPost(title: String!, content: String!): Post!
+  deletePost(id: ID!): Post
+  publish(id: ID!): Post
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String
+  contributions: Int!
+  posts: [Post!]!
+  comments: [Comment!]!
+}
+
+type Post {
+  id: ID!
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
+  title: String!
+  content: String
+  published: Boolean!
+  author: User!
+  comments: [Comment!]!
+}
+
+type Show {
+  id: ID!
+  date: DateTime!
+  time: Time!
+  done: Boolean
+  participants: [User!]!
+  comments: [Comment!]
+  photos: [Photo!]
+  videos: [Video!]
+}
+
+type Comment {
+  id: ID!
+  text: String!
+  writtenBy: User!
+}
+
+type Photo {
+  id: ID!
+  url: String!
+  caption: String
+  event: Show!
+  comments: [Comment!]
+}
+
+type Video {
+  id: ID!
+  url: String!
+  caption: String
+  event: Show!
+  comments: [Comment!]
+}

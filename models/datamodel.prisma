@@ -1,0 +1,54 @@
+scalar Time
+
+type User {
+  id: ID! @id
+  email: String! @unique
+  name: String
+  contributions: Int!
+  posts: [Post!]!
+  comments: [Comment!]!
+}
+
+type Post {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  title: String!
+  content: String
+  published: Boolean! @default(value: false)
+  author: User!
+  comments: [Comment!]!
+}
+
+type Show {
+  id: ID! @id
+  date: DateTime!
+  time: String!
+  done: Boolean @default(value: false)
+  participants: [User!]!
+  comments: [Comment!]
+  photos: [Photo!]
+  videos: [Video!]
+}
+
+type Comment {
+  id: ID! @id
+  text: String!
+  writtenBy: User!
+}
+
+type Photo {
+  id: ID! @id
+  url: String!
+  caption: String
+  event: Show!
+  comments: [Comment!]
+}
+
+type Video {
+  id: ID! @id
+  url: String!
+  caption: String
+  event: Show!
+  comments: [Comment!]
+}
