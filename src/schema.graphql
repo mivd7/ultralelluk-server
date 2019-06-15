@@ -10,7 +10,7 @@ type Query {
 type Mutation {
   signupUser(email: String!, name: String): User!
   #later userid mee geven
-  createPost(title: String!, content: String!): Post!
+  createDraft(title: String!, content: String!, published: Boolean!, userId: ID!): Post!
   deletePost(id: ID!): Post
   publish(id: ID!): Post
 }

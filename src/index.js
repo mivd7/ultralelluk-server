@@ -31,11 +31,12 @@ const resolvers = {
         name,
       })
     },
-    createDraft: (parent, { title, content, authorEmail }, context) => {
+    createDraft: (parent, { title, content, published, userId }, context) => {
       return context.prisma.createPost({
         title,
         content,
-        author: { connect: { email: authorEmail } },
+        published,
+        author: { connect: { id: userId } },
       })
     },
     publish: (parent, { id }, context) => {
