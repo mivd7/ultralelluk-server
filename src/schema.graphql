@@ -3,13 +3,27 @@ scalar Time
 
 type Query {
   feedPosts: [Post!]!
+  feedCalendar: [CalendarItem!]!
+  feedCalendarItem: CalendarItem
+  feedAllMedia: [Media!]!
+  searchPhoto(searchString: String): [Media!]!
+  searchVideo(searchString: String): [Media!]!
+  searchCalendarItem(searchString: String): [CalendarItem!]!
+  feedGigs: [Gig!]!
+  filterGigs(searchString: String): [Gig!]!
   filterPosts(searchString: String): [Post!]!
   post(id: ID!): Post
+  gig(id: ID!): Gig
+  media(id: ID!): Media
+  calendarItem(id: ID!): CalendarItem
 }
 
 type Mutation {
   signupUser(email: String!, name: String): User!
   createDraft(title: String!, content: String!, published: Boolean!, userId: ID!): Post!
+  createCalendarItem(date: String!, time: String!, description: String!, gigId: ID): CalendarItem!
+  deleteCalendarItem(id: ID!): CalendarItem
+  updateCalendarItem(id: ID!, date: String, time: String, description: String): CalendarItem
   deletePost(id: ID!): Post
   publish(id: ID!): Post
 }
@@ -21,6 +35,7 @@ type User {
   contributions: Int!
   posts: [Post!]!
   comments: [Comment!]!
+  shows: [Gig!]
 }
 
 type Post {
@@ -34,15 +49,27 @@ type Post {
   comments: [Comment!]!
 }
 
-type Show {
+type Gig {
   id: ID!
   date: DateTime!
-  time: Time!
+  time: String!
+  title: String!
+  confirmed: Boolean
   done: Boolean
   participants: [User!]!
   comments: [Comment!]
-  photos: [Photo!]
-  videos: [Video!]
+  media: [Media!]!
+  calendarItem: CalendarItem!
+}
+
+type CalendarItem {
+  id: ID!
+  date: DateTime!
+  time: DateTime
+  description: String!
+  participants: [User!]!
+  comments: [Comment!]
+  gig: Gig
 }
 
 type Comment {
@@ -51,18 +78,11 @@ type Comment {
   writtenBy: User!
 }
 
-type Photo {
+type Media {
   id: ID!
   url: String!
   caption: String
-  event: Show!
+  event: Gig!
   comments: [Comment!]
-}
-
-type Video {
-  id: ID!
-  url: String!
-  caption: String
-  event: Show!
-  comments: [Comment!]
+  isVideo: Boolean
 }
