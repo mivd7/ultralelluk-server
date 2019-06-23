@@ -26,6 +26,7 @@ type Mutation {
   updateCalendarItem(id: ID!, date: String, time: String, description: String): CalendarItem
   deletePost(id: ID!): Post
   publish(id: ID!): Post
+  createGig(date: String!, time: String!, title: String!): Gig
 }
 
 type User {
