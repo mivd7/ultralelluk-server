@@ -1,8 +1,8 @@
 type User {
   id: ID! @id
   email: String! @unique
+  password: String!
   name: String
-  contributions: Int!
   posts: [Post!]!
   comments: [Comment!]!
   shows: [Gig!]

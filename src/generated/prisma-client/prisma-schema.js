@@ -3,19 +3,7 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateComment {
-  count: Int!
-}
-
-type AggregatePhoto {
-  count: Int!
-}
-
-type AggregatePost {
-  count: Int!
-}
-
-type AggregateShow {
+/* GraphQL */ `type AggregatePost {
   count: Int!
 }
 
@@ -23,226 +11,8 @@ type AggregateUser {
   count: Int!
 }
 
-type AggregateVideo {
-  count: Int!
-}
-
 type BatchPayload {
   count: Long!
-}
-
-type Comment {
-  id: ID!
-  text: String!
-  writtenBy: User!
-}
-
-type CommentConnection {
-  pageInfo: PageInfo!
-  edges: [CommentEdge]!
-  aggregate: AggregateComment!
-}
-
-input CommentCreateInput {
-  id: ID
-  text: String!
-  writtenBy: UserCreateOneWithoutCommentsInput!
-}
-
-input CommentCreateManyInput {
-  create: [CommentCreateInput!]
-  connect: [CommentWhereUniqueInput!]
-}
-
-input CommentCreateManyWithoutWrittenByInput {
-  create: [CommentCreateWithoutWrittenByInput!]
-  connect: [CommentWhereUniqueInput!]
-}
-
-input CommentCreateWithoutWrittenByInput {
-  id: ID
-  text: String!
-}
-
-type CommentEdge {
-  node: Comment!
-  cursor: String!
-}
-
-enum CommentOrderByInput {
-  id_ASC
-  id_DESC
-  text_ASC
-  text_DESC
-}
-
-type CommentPreviousValues {
-  id: ID!
-  text: String!
-}
-
-input CommentScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  text: String
-  text_not: String
-  text_in: [String!]
-  text_not_in: [String!]
-  text_lt: String
-  text_lte: String
-  text_gt: String
-  text_gte: String
-  text_contains: String
-  text_not_contains: String
-  text_starts_with: String
-  text_not_starts_with: String
-  text_ends_with: String
-  text_not_ends_with: String
-  AND: [CommentScalarWhereInput!]
-  OR: [CommentScalarWhereInput!]
-  NOT: [CommentScalarWhereInput!]
-}
-
-type CommentSubscriptionPayload {
-  mutation: MutationType!
-  node: Comment
-  updatedFields: [String!]
-  previousValues: CommentPreviousValues
-}
-
-input CommentSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: CommentWhereInput
-  AND: [CommentSubscriptionWhereInput!]
-  OR: [CommentSubscriptionWhereInput!]
-  NOT: [CommentSubscriptionWhereInput!]
-}
-
-input CommentUpdateDataInput {
-  text: String
-  writtenBy: UserUpdateOneRequiredWithoutCommentsInput
-}
-
-input CommentUpdateInput {
-  text: String
-  writtenBy: UserUpdateOneRequiredWithoutCommentsInput
-}
-
-input CommentUpdateManyDataInput {
-  text: String
-}
-
-input CommentUpdateManyInput {
-  create: [CommentCreateInput!]
-  update: [CommentUpdateWithWhereUniqueNestedInput!]
-  upsert: [CommentUpsertWithWhereUniqueNestedInput!]
-  delete: [CommentWhereUniqueInput!]
-  connect: [CommentWhereUniqueInput!]
-  set: [CommentWhereUniqueInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  updateMany: [CommentUpdateManyWithWhereNestedInput!]
-}
-
-input CommentUpdateManyMutationInput {
-  text: String
-}
-
-input CommentUpdateManyWithoutWrittenByInput {
-  create: [CommentCreateWithoutWrittenByInput!]
-  delete: [CommentWhereUniqueInput!]
-  connect: [CommentWhereUniqueInput!]
-  set: [CommentWhereUniqueInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueWithoutWrittenByInput!]
-  upsert: [CommentUpsertWithWhereUniqueWithoutWrittenByInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  updateMany: [CommentUpdateManyWithWhereNestedInput!]
-}
-
-input CommentUpdateManyWithWhereNestedInput {
-  where: CommentScalarWhereInput!
-  data: CommentUpdateManyDataInput!
-}
-
-input CommentUpdateWithoutWrittenByDataInput {
-  text: String
-}
-
-input CommentUpdateWithWhereUniqueNestedInput {
-  where: CommentWhereUniqueInput!
-  data: CommentUpdateDataInput!
-}
-
-input CommentUpdateWithWhereUniqueWithoutWrittenByInput {
-  where: CommentWhereUniqueInput!
-  data: CommentUpdateWithoutWrittenByDataInput!
-}
-
-input CommentUpsertWithWhereUniqueNestedInput {
-  where: CommentWhereUniqueInput!
-  update: CommentUpdateDataInput!
-  create: CommentCreateInput!
-}
-
-input CommentUpsertWithWhereUniqueWithoutWrittenByInput {
-  where: CommentWhereUniqueInput!
-  update: CommentUpdateWithoutWrittenByDataInput!
-  create: CommentCreateWithoutWrittenByInput!
-}
-
-input CommentWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  text: String
-  text_not: String
-  text_in: [String!]
-  text_not_in: [String!]
-  text_lt: String
-  text_lte: String
-  text_gt: String
-  text_gte: String
-  text_contains: String
-  text_not_contains: String
-  text_starts_with: String
-  text_not_starts_with: String
-  text_ends_with: String
-  text_not_ends_with: String
-  writtenBy: UserWhereInput
-  AND: [CommentWhereInput!]
-  OR: [CommentWhereInput!]
-  NOT: [CommentWhereInput!]
-}
-
-input CommentWhereUniqueInput {
-  id: ID
 }
 
 scalar DateTime
@@ -250,42 +20,18 @@ scalar DateTime
 scalar Long
 
 type Mutation {
-  createComment(data: CommentCreateInput!): Comment!
-  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
-  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
-  upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
-  deleteComment(where: CommentWhereUniqueInput!): Comment
-  deleteManyComments(where: CommentWhereInput): BatchPayload!
-  createPhoto(data: PhotoCreateInput!): Photo!
-  updatePhoto(data: PhotoUpdateInput!, where: PhotoWhereUniqueInput!): Photo
-  updateManyPhotos(data: PhotoUpdateManyMutationInput!, where: PhotoWhereInput): BatchPayload!
-  upsertPhoto(where: PhotoWhereUniqueInput!, create: PhotoCreateInput!, update: PhotoUpdateInput!): Photo!
-  deletePhoto(where: PhotoWhereUniqueInput!): Photo
-  deleteManyPhotos(where: PhotoWhereInput): BatchPayload!
   createPost(data: PostCreateInput!): Post!
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   deletePost(where: PostWhereUniqueInput!): Post
   deleteManyPosts(where: PostWhereInput): BatchPayload!
-  createShow(data: ShowCreateInput!): Show!
-  updateShow(data: ShowUpdateInput!, where: ShowWhereUniqueInput!): Show
-  updateManyShows(data: ShowUpdateManyMutationInput!, where: ShowWhereInput): BatchPayload!
-  upsertShow(where: ShowWhereUniqueInput!, create: ShowCreateInput!, update: ShowUpdateInput!): Show!
-  deleteShow(where: ShowWhereUniqueInput!): Show
-  deleteManyShows(where: ShowWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  createVideo(data: VideoCreateInput!): Video!
-  updateVideo(data: VideoUpdateInput!, where: VideoWhereUniqueInput!): Video
-  updateManyVideos(data: VideoUpdateManyMutationInput!, where: VideoWhereInput): BatchPayload!
-  upsertVideo(where: VideoWhereUniqueInput!, create: VideoCreateInput!, update: VideoUpdateInput!): Video!
-  deleteVideo(where: VideoWhereUniqueInput!): Video
-  deleteManyVideos(where: VideoWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -305,242 +51,14 @@ type PageInfo {
   endCursor: String
 }
 
-type Photo {
-  id: ID!
-  url: String!
-  caption: String
-  event: Show!
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
-}
-
-type PhotoConnection {
-  pageInfo: PageInfo!
-  edges: [PhotoEdge]!
-  aggregate: AggregatePhoto!
-}
-
-input PhotoCreateInput {
-  id: ID
-  url: String!
-  caption: String
-  event: ShowCreateOneWithoutPhotosInput!
-  comments: CommentCreateManyInput
-}
-
-input PhotoCreateManyWithoutEventInput {
-  create: [PhotoCreateWithoutEventInput!]
-  connect: [PhotoWhereUniqueInput!]
-}
-
-input PhotoCreateWithoutEventInput {
-  id: ID
-  url: String!
-  caption: String
-  comments: CommentCreateManyInput
-}
-
-type PhotoEdge {
-  node: Photo!
-  cursor: String!
-}
-
-enum PhotoOrderByInput {
-  id_ASC
-  id_DESC
-  url_ASC
-  url_DESC
-  caption_ASC
-  caption_DESC
-}
-
-type PhotoPreviousValues {
-  id: ID!
-  url: String!
-  caption: String
-}
-
-input PhotoScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  url: String
-  url_not: String
-  url_in: [String!]
-  url_not_in: [String!]
-  url_lt: String
-  url_lte: String
-  url_gt: String
-  url_gte: String
-  url_contains: String
-  url_not_contains: String
-  url_starts_with: String
-  url_not_starts_with: String
-  url_ends_with: String
-  url_not_ends_with: String
-  caption: String
-  caption_not: String
-  caption_in: [String!]
-  caption_not_in: [String!]
-  caption_lt: String
-  caption_lte: String
-  caption_gt: String
-  caption_gte: String
-  caption_contains: String
-  caption_not_contains: String
-  caption_starts_with: String
-  caption_not_starts_with: String
-  caption_ends_with: String
-  caption_not_ends_with: String
-  AND: [PhotoScalarWhereInput!]
-  OR: [PhotoScalarWhereInput!]
-  NOT: [PhotoScalarWhereInput!]
-}
-
-type PhotoSubscriptionPayload {
-  mutation: MutationType!
-  node: Photo
-  updatedFields: [String!]
-  previousValues: PhotoPreviousValues
-}
-
-input PhotoSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: PhotoWhereInput
-  AND: [PhotoSubscriptionWhereInput!]
-  OR: [PhotoSubscriptionWhereInput!]
-  NOT: [PhotoSubscriptionWhereInput!]
-}
-
-input PhotoUpdateInput {
-  url: String
-  caption: String
-  event: ShowUpdateOneRequiredWithoutPhotosInput
-  comments: CommentUpdateManyInput
-}
-
-input PhotoUpdateManyDataInput {
-  url: String
-  caption: String
-}
-
-input PhotoUpdateManyMutationInput {
-  url: String
-  caption: String
-}
-
-input PhotoUpdateManyWithoutEventInput {
-  create: [PhotoCreateWithoutEventInput!]
-  delete: [PhotoWhereUniqueInput!]
-  connect: [PhotoWhereUniqueInput!]
-  set: [PhotoWhereUniqueInput!]
-  disconnect: [PhotoWhereUniqueInput!]
-  update: [PhotoUpdateWithWhereUniqueWithoutEventInput!]
-  upsert: [PhotoUpsertWithWhereUniqueWithoutEventInput!]
-  deleteMany: [PhotoScalarWhereInput!]
-  updateMany: [PhotoUpdateManyWithWhereNestedInput!]
-}
-
-input PhotoUpdateManyWithWhereNestedInput {
-  where: PhotoScalarWhereInput!
-  data: PhotoUpdateManyDataInput!
-}
-
-input PhotoUpdateWithoutEventDataInput {
-  url: String
-  caption: String
-  comments: CommentUpdateManyInput
-}
-
-input PhotoUpdateWithWhereUniqueWithoutEventInput {
-  where: PhotoWhereUniqueInput!
-  data: PhotoUpdateWithoutEventDataInput!
-}
-
-input PhotoUpsertWithWhereUniqueWithoutEventInput {
-  where: PhotoWhereUniqueInput!
-  update: PhotoUpdateWithoutEventDataInput!
-  create: PhotoCreateWithoutEventInput!
-}
-
-input PhotoWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  url: String
-  url_not: String
-  url_in: [String!]
-  url_not_in: [String!]
-  url_lt: String
-  url_lte: String
-  url_gt: String
-  url_gte: String
-  url_contains: String
-  url_not_contains: String
-  url_starts_with: String
-  url_not_starts_with: String
-  url_ends_with: String
-  url_not_ends_with: String
-  caption: String
-  caption_not: String
-  caption_in: [String!]
-  caption_not_in: [String!]
-  caption_lt: String
-  caption_lte: String
-  caption_gt: String
-  caption_gte: String
-  caption_contains: String
-  caption_not_contains: String
-  caption_starts_with: String
-  caption_not_starts_with: String
-  caption_ends_with: String
-  caption_not_ends_with: String
-  event: ShowWhereInput
-  comments_every: CommentWhereInput
-  comments_some: CommentWhereInput
-  comments_none: CommentWhereInput
-  AND: [PhotoWhereInput!]
-  OR: [PhotoWhereInput!]
-  NOT: [PhotoWhereInput!]
-}
-
-input PhotoWhereUniqueInput {
-  id: ID
-}
-
 type Post {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
+  published: Boolean!
   title: String!
   content: String
-  published: Boolean!
   author: User!
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
 }
 
 type PostConnection {
@@ -551,11 +69,10 @@ type PostConnection {
 
 input PostCreateInput {
   id: ID
+  published: Boolean
   title: String!
   content: String
-  published: Boolean
   author: UserCreateOneWithoutPostsInput!
-  comments: CommentCreateManyInput
 }
 
 input PostCreateManyWithoutAuthorInput {
@@ -565,10 +82,9 @@ input PostCreateManyWithoutAuthorInput {
 
 input PostCreateWithoutAuthorInput {
   id: ID
+  published: Boolean
   title: String!
   content: String
-  published: Boolean
-  comments: CommentCreateManyInput
 }
 
 type PostEdge {
@@ -583,21 +99,21 @@ enum PostOrderByInput {
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
+  published_ASC
+  published_DESC
   title_ASC
   title_DESC
   content_ASC
   content_DESC
-  published_ASC
-  published_DESC
 }
 
 type PostPreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
+  published: Boolean!
   title: String!
   content: String
-  published: Boolean!
 }
 
 input PostScalarWhereInput {
@@ -631,6 +147,8 @@ input PostScalarWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
+  published: Boolean
+  published_not: Boolean
   title: String
   title_not: String
   title_in: [String!]
@@ -659,8 +177,6 @@ input PostScalarWhereInput {
   content_not_starts_with: String
   content_ends_with: String
   content_not_ends_with: String
-  published: Boolean
-  published_not: Boolean
   AND: [PostScalarWhereInput!]
   OR: [PostScalarWhereInput!]
   NOT: [PostScalarWhereInput!]
@@ -685,23 +201,22 @@ input PostSubscriptionWhereInput {
 }
 
 input PostUpdateInput {
+  published: Boolean
   title: String
   content: String
-  published: Boolean
   author: UserUpdateOneRequiredWithoutPostsInput
-  comments: CommentUpdateManyInput
 }
 
 input PostUpdateManyDataInput {
+  published: Boolean
   title: String
   content: String
-  published: Boolean
 }
 
 input PostUpdateManyMutationInput {
+  published: Boolean
   title: String
   content: String
-  published: Boolean
 }
 
 input PostUpdateManyWithoutAuthorInput {
@@ -722,10 +237,9 @@ input PostUpdateManyWithWhereNestedInput {
 }
 
 input PostUpdateWithoutAuthorDataInput {
+  published: Boolean
   title: String
   content: String
-  published: Boolean
-  comments: CommentUpdateManyInput
 }
 
 input PostUpdateWithWhereUniqueWithoutAuthorInput {
@@ -770,6 +284,8 @@ input PostWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
+  published: Boolean
+  published_not: Boolean
   title: String
   title_not: String
   title_in: [String!]
@@ -798,12 +314,7 @@ input PostWhereInput {
   content_not_starts_with: String
   content_ends_with: String
   content_not_ends_with: String
-  published: Boolean
-  published_not: Boolean
   author: UserWhereInput
-  comments_every: CommentWhereInput
-  comments_some: CommentWhereInput
-  comments_none: CommentWhereInput
   AND: [PostWhereInput!]
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]
@@ -814,260 +325,26 @@ input PostWhereUniqueInput {
 }
 
 type Query {
-  comment(where: CommentWhereUniqueInput!): Comment
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
-  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
-  photo(where: PhotoWhereUniqueInput!): Photo
-  photos(where: PhotoWhereInput, orderBy: PhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Photo]!
-  photosConnection(where: PhotoWhereInput, orderBy: PhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PhotoConnection!
   post(where: PostWhereUniqueInput!): Post
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
-  show(where: ShowWhereUniqueInput!): Show
-  shows(where: ShowWhereInput, orderBy: ShowOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Show]!
-  showsConnection(where: ShowWhereInput, orderBy: ShowOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ShowConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  video(where: VideoWhereUniqueInput!): Video
-  videos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video]!
-  videosConnection(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VideoConnection!
   node(id: ID!): Node
 }
 
-type Show {
-  id: ID!
-  date: DateTime!
-  time: String!
-  done: Boolean
-  participants(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
-  photos(where: PhotoWhereInput, orderBy: PhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Photo!]
-  videos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video!]
-}
-
-type ShowConnection {
-  pageInfo: PageInfo!
-  edges: [ShowEdge]!
-  aggregate: AggregateShow!
-}
-
-input ShowCreateInput {
-  id: ID
-  date: DateTime!
-  time: String!
-  done: Boolean
-  participants: UserCreateManyInput
-  comments: CommentCreateManyInput
-  photos: PhotoCreateManyWithoutEventInput
-  videos: VideoCreateManyWithoutEventInput
-}
-
-input ShowCreateOneWithoutPhotosInput {
-  create: ShowCreateWithoutPhotosInput
-  connect: ShowWhereUniqueInput
-}
-
-input ShowCreateOneWithoutVideosInput {
-  create: ShowCreateWithoutVideosInput
-  connect: ShowWhereUniqueInput
-}
-
-input ShowCreateWithoutPhotosInput {
-  id: ID
-  date: DateTime!
-  time: String!
-  done: Boolean
-  participants: UserCreateManyInput
-  comments: CommentCreateManyInput
-  videos: VideoCreateManyWithoutEventInput
-}
-
-input ShowCreateWithoutVideosInput {
-  id: ID
-  date: DateTime!
-  time: String!
-  done: Boolean
-  participants: UserCreateManyInput
-  comments: CommentCreateManyInput
-  photos: PhotoCreateManyWithoutEventInput
-}
-
-type ShowEdge {
-  node: Show!
-  cursor: String!
-}
-
-enum ShowOrderByInput {
-  id_ASC
-  id_DESC
-  date_ASC
-  date_DESC
-  time_ASC
-  time_DESC
-  done_ASC
-  done_DESC
-}
-
-type ShowPreviousValues {
-  id: ID!
-  date: DateTime!
-  time: String!
-  done: Boolean
-}
-
-type ShowSubscriptionPayload {
-  mutation: MutationType!
-  node: Show
-  updatedFields: [String!]
-  previousValues: ShowPreviousValues
-}
-
-input ShowSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: ShowWhereInput
-  AND: [ShowSubscriptionWhereInput!]
-  OR: [ShowSubscriptionWhereInput!]
-  NOT: [ShowSubscriptionWhereInput!]
-}
-
-input ShowUpdateInput {
-  date: DateTime
-  time: String
-  done: Boolean
-  participants: UserUpdateManyInput
-  comments: CommentUpdateManyInput
-  photos: PhotoUpdateManyWithoutEventInput
-  videos: VideoUpdateManyWithoutEventInput
-}
-
-input ShowUpdateManyMutationInput {
-  date: DateTime
-  time: String
-  done: Boolean
-}
-
-input ShowUpdateOneRequiredWithoutPhotosInput {
-  create: ShowCreateWithoutPhotosInput
-  update: ShowUpdateWithoutPhotosDataInput
-  upsert: ShowUpsertWithoutPhotosInput
-  connect: ShowWhereUniqueInput
-}
-
-input ShowUpdateOneRequiredWithoutVideosInput {
-  create: ShowCreateWithoutVideosInput
-  update: ShowUpdateWithoutVideosDataInput
-  upsert: ShowUpsertWithoutVideosInput
-  connect: ShowWhereUniqueInput
-}
-
-input ShowUpdateWithoutPhotosDataInput {
-  date: DateTime
-  time: String
-  done: Boolean
-  participants: UserUpdateManyInput
-  comments: CommentUpdateManyInput
-  videos: VideoUpdateManyWithoutEventInput
-}
-
-input ShowUpdateWithoutVideosDataInput {
-  date: DateTime
-  time: String
-  done: Boolean
-  participants: UserUpdateManyInput
-  comments: CommentUpdateManyInput
-  photos: PhotoUpdateManyWithoutEventInput
-}
-
-input ShowUpsertWithoutPhotosInput {
-  update: ShowUpdateWithoutPhotosDataInput!
-  create: ShowCreateWithoutPhotosInput!
-}
-
-input ShowUpsertWithoutVideosInput {
-  update: ShowUpdateWithoutVideosDataInput!
-  create: ShowCreateWithoutVideosInput!
-}
-
-input ShowWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  date: DateTime
-  date_not: DateTime
-  date_in: [DateTime!]
-  date_not_in: [DateTime!]
-  date_lt: DateTime
-  date_lte: DateTime
-  date_gt: DateTime
-  date_gte: DateTime
-  time: String
-  time_not: String
-  time_in: [String!]
-  time_not_in: [String!]
-  time_lt: String
-  time_lte: String
-  time_gt: String
-  time_gte: String
-  time_contains: String
-  time_not_contains: String
-  time_starts_with: String
-  time_not_starts_with: String
-  time_ends_with: String
-  time_not_ends_with: String
-  done: Boolean
-  done_not: Boolean
-  participants_every: UserWhereInput
-  participants_some: UserWhereInput
-  participants_none: UserWhereInput
-  comments_every: CommentWhereInput
-  comments_some: CommentWhereInput
-  comments_none: CommentWhereInput
-  photos_every: PhotoWhereInput
-  photos_some: PhotoWhereInput
-  photos_none: PhotoWhereInput
-  videos_every: VideoWhereInput
-  videos_some: VideoWhereInput
-  videos_none: VideoWhereInput
-  AND: [ShowWhereInput!]
-  OR: [ShowWhereInput!]
-  NOT: [ShowWhereInput!]
-}
-
-input ShowWhereUniqueInput {
-  id: ID
-}
-
 type Subscription {
-  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
-  photo(where: PhotoSubscriptionWhereInput): PhotoSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
-  show(where: ShowSubscriptionWhereInput): ShowSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  video(where: VideoSubscriptionWhereInput): VideoSubscriptionPayload
 }
 
 type User {
   id: ID!
   email: String!
+  password: String!
   name: String
-  contributions: Int!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
 }
 
 type UserConnection {
@@ -1079,20 +356,9 @@ type UserConnection {
 input UserCreateInput {
   id: ID
   email: String!
+  password: String!
   name: String
-  contributions: Int!
   posts: PostCreateManyWithoutAuthorInput
-  comments: CommentCreateManyWithoutWrittenByInput
-}
-
-input UserCreateManyInput {
-  create: [UserCreateInput!]
-  connect: [UserWhereUniqueInput!]
-}
-
-input UserCreateOneWithoutCommentsInput {
-  create: UserCreateWithoutCommentsInput
-  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutPostsInput {
@@ -1100,20 +366,11 @@ input UserCreateOneWithoutPostsInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateWithoutCommentsInput {
-  id: ID
-  email: String!
-  name: String
-  contributions: Int!
-  posts: PostCreateManyWithoutAuthorInput
-}
-
 input UserCreateWithoutPostsInput {
   id: ID
   email: String!
+  password: String!
   name: String
-  contributions: Int!
-  comments: CommentCreateManyWithoutWrittenByInput
 }
 
 type UserEdge {
@@ -1126,73 +383,17 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
+  password_ASC
+  password_DESC
   name_ASC
   name_DESC
-  contributions_ASC
-  contributions_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   email: String!
+  password: String!
   name: String
-  contributions: Int!
-}
-
-input UserScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  email: String
-  email_not: String
-  email_in: [String!]
-  email_not_in: [String!]
-  email_lt: String
-  email_lte: String
-  email_gt: String
-  email_gte: String
-  email_contains: String
-  email_not_contains: String
-  email_starts_with: String
-  email_not_starts_with: String
-  email_ends_with: String
-  email_not_ends_with: String
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  contributions: Int
-  contributions_not: Int
-  contributions_in: [Int!]
-  contributions_not_in: [Int!]
-  contributions_lt: Int
-  contributions_lte: Int
-  contributions_gt: Int
-  contributions_gte: Int
-  AND: [UserScalarWhereInput!]
-  OR: [UserScalarWhereInput!]
-  NOT: [UserScalarWhereInput!]
 }
 
 type UserSubscriptionPayload {
@@ -1213,56 +414,17 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
-input UserUpdateDataInput {
-  email: String
-  name: String
-  contributions: Int
-  posts: PostUpdateManyWithoutAuthorInput
-  comments: CommentUpdateManyWithoutWrittenByInput
-}
-
 input UserUpdateInput {
   email: String
+  password: String
   name: String
-  contributions: Int
   posts: PostUpdateManyWithoutAuthorInput
-  comments: CommentUpdateManyWithoutWrittenByInput
-}
-
-input UserUpdateManyDataInput {
-  email: String
-  name: String
-  contributions: Int
-}
-
-input UserUpdateManyInput {
-  create: [UserCreateInput!]
-  update: [UserUpdateWithWhereUniqueNestedInput!]
-  upsert: [UserUpsertWithWhereUniqueNestedInput!]
-  delete: [UserWhereUniqueInput!]
-  connect: [UserWhereUniqueInput!]
-  set: [UserWhereUniqueInput!]
-  disconnect: [UserWhereUniqueInput!]
-  deleteMany: [UserScalarWhereInput!]
-  updateMany: [UserUpdateManyWithWhereNestedInput!]
 }
 
 input UserUpdateManyMutationInput {
   email: String
+  password: String
   name: String
-  contributions: Int
-}
-
-input UserUpdateManyWithWhereNestedInput {
-  where: UserScalarWhereInput!
-  data: UserUpdateManyDataInput!
-}
-
-input UserUpdateOneRequiredWithoutCommentsInput {
-  create: UserCreateWithoutCommentsInput
-  update: UserUpdateWithoutCommentsDataInput
-  upsert: UserUpsertWithoutCommentsInput
-  connect: UserWhereUniqueInput
 }
 
 input UserUpdateOneRequiredWithoutPostsInput {
@@ -1272,39 +434,15 @@ input UserUpdateOneRequiredWithoutPostsInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateWithoutCommentsDataInput {
-  email: String
-  name: String
-  contributions: Int
-  posts: PostUpdateManyWithoutAuthorInput
-}
-
 input UserUpdateWithoutPostsDataInput {
   email: String
+  password: String
   name: String
-  contributions: Int
-  comments: CommentUpdateManyWithoutWrittenByInput
-}
-
-input UserUpdateWithWhereUniqueNestedInput {
-  where: UserWhereUniqueInput!
-  data: UserUpdateDataInput!
-}
-
-input UserUpsertWithoutCommentsInput {
-  update: UserUpdateWithoutCommentsDataInput!
-  create: UserCreateWithoutCommentsInput!
 }
 
 input UserUpsertWithoutPostsInput {
   update: UserUpdateWithoutPostsDataInput!
   create: UserCreateWithoutPostsInput!
-}
-
-input UserUpsertWithWhereUniqueNestedInput {
-  where: UserWhereUniqueInput!
-  update: UserUpdateDataInput!
-  create: UserCreateInput!
 }
 
 input UserWhereInput {
@@ -1336,6 +474,20 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -1350,20 +502,9 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  contributions: Int
-  contributions_not: Int
-  contributions_in: [Int!]
-  contributions_not_in: [Int!]
-  contributions_lt: Int
-  contributions_lte: Int
-  contributions_gt: Int
-  contributions_gte: Int
   posts_every: PostWhereInput
   posts_some: PostWhereInput
   posts_none: PostWhereInput
-  comments_every: CommentWhereInput
-  comments_some: CommentWhereInput
-  comments_none: CommentWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -1372,233 +513,6 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
-}
-
-type Video {
-  id: ID!
-  url: String!
-  caption: String
-  event: Show!
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
-}
-
-type VideoConnection {
-  pageInfo: PageInfo!
-  edges: [VideoEdge]!
-  aggregate: AggregateVideo!
-}
-
-input VideoCreateInput {
-  id: ID
-  url: String!
-  caption: String
-  event: ShowCreateOneWithoutVideosInput!
-  comments: CommentCreateManyInput
-}
-
-input VideoCreateManyWithoutEventInput {
-  create: [VideoCreateWithoutEventInput!]
-  connect: [VideoWhereUniqueInput!]
-}
-
-input VideoCreateWithoutEventInput {
-  id: ID
-  url: String!
-  caption: String
-  comments: CommentCreateManyInput
-}
-
-type VideoEdge {
-  node: Video!
-  cursor: String!
-}
-
-enum VideoOrderByInput {
-  id_ASC
-  id_DESC
-  url_ASC
-  url_DESC
-  caption_ASC
-  caption_DESC
-}
-
-type VideoPreviousValues {
-  id: ID!
-  url: String!
-  caption: String
-}
-
-input VideoScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  url: String
-  url_not: String
-  url_in: [String!]
-  url_not_in: [String!]
-  url_lt: String
-  url_lte: String
-  url_gt: String
-  url_gte: String
-  url_contains: String
-  url_not_contains: String
-  url_starts_with: String
-  url_not_starts_with: String
-  url_ends_with: String
-  url_not_ends_with: String
-  caption: String
-  caption_not: String
-  caption_in: [String!]
-  caption_not_in: [String!]
-  caption_lt: String
-  caption_lte: String
-  caption_gt: String
-  caption_gte: String
-  caption_contains: String
-  caption_not_contains: String
-  caption_starts_with: String
-  caption_not_starts_with: String
-  caption_ends_with: String
-  caption_not_ends_with: String
-  AND: [VideoScalarWhereInput!]
-  OR: [VideoScalarWhereInput!]
-  NOT: [VideoScalarWhereInput!]
-}
-
-type VideoSubscriptionPayload {
-  mutation: MutationType!
-  node: Video
-  updatedFields: [String!]
-  previousValues: VideoPreviousValues
-}
-
-input VideoSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: VideoWhereInput
-  AND: [VideoSubscriptionWhereInput!]
-  OR: [VideoSubscriptionWhereInput!]
-  NOT: [VideoSubscriptionWhereInput!]
-}
-
-input VideoUpdateInput {
-  url: String
-  caption: String
-  event: ShowUpdateOneRequiredWithoutVideosInput
-  comments: CommentUpdateManyInput
-}
-
-input VideoUpdateManyDataInput {
-  url: String
-  caption: String
-}
-
-input VideoUpdateManyMutationInput {
-  url: String
-  caption: String
-}
-
-input VideoUpdateManyWithoutEventInput {
-  create: [VideoCreateWithoutEventInput!]
-  delete: [VideoWhereUniqueInput!]
-  connect: [VideoWhereUniqueInput!]
-  set: [VideoWhereUniqueInput!]
-  disconnect: [VideoWhereUniqueInput!]
-  update: [VideoUpdateWithWhereUniqueWithoutEventInput!]
-  upsert: [VideoUpsertWithWhereUniqueWithoutEventInput!]
-  deleteMany: [VideoScalarWhereInput!]
-  updateMany: [VideoUpdateManyWithWhereNestedInput!]
-}
-
-input VideoUpdateManyWithWhereNestedInput {
-  where: VideoScalarWhereInput!
-  data: VideoUpdateManyDataInput!
-}
-
-input VideoUpdateWithoutEventDataInput {
-  url: String
-  caption: String
-  comments: CommentUpdateManyInput
-}
-
-input VideoUpdateWithWhereUniqueWithoutEventInput {
-  where: VideoWhereUniqueInput!
-  data: VideoUpdateWithoutEventDataInput!
-}
-
-input VideoUpsertWithWhereUniqueWithoutEventInput {
-  where: VideoWhereUniqueInput!
-  update: VideoUpdateWithoutEventDataInput!
-  create: VideoCreateWithoutEventInput!
-}
-
-input VideoWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  url: String
-  url_not: String
-  url_in: [String!]
-  url_not_in: [String!]
-  url_lt: String
-  url_lte: String
-  url_gt: String
-  url_gte: String
-  url_contains: String
-  url_not_contains: String
-  url_starts_with: String
-  url_not_starts_with: String
-  url_ends_with: String
-  url_not_ends_with: String
-  caption: String
-  caption_not: String
-  caption_in: [String!]
-  caption_not_in: [String!]
-  caption_lt: String
-  caption_lte: String
-  caption_gt: String
-  caption_gte: String
-  caption_contains: String
-  caption_not_contains: String
-  caption_starts_with: String
-  caption_not_starts_with: String
-  caption_ends_with: String
-  caption_not_ends_with: String
-  event: ShowWhereInput
-  comments_every: CommentWhereInput
-  comments_some: CommentWhereInput
-  comments_none: CommentWhereInput
-  AND: [VideoWhereInput!]
-  OR: [VideoWhereInput!]
-  NOT: [VideoWhereInput!]
-}
-
-input VideoWhereUniqueInput {
-  id: ID
 }
 `
       }

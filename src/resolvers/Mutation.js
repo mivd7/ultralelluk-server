@@ -1,43 +1,54 @@
-async function signup(parent, args, context, info) {
-  // 1
-  const password = await bcrypt.hash(args.password, 10)
-  // 2
-  const user = await context.prisma.createUser({ ...args, password })
+const { hash, compare } = require('bcrypt')
+const { sign } = require('jsonwebtoken')
+const { APP_SECRET, getUserId } = require('../utils')
 
-  // 3
-  const token = jwt.sign({ userId: user.id }, APP_SECRET)
-
-  // 4
-  return {
-    token,
-    user,
-  }
-}
-
-async function login(parent, args, context, info) {
-  // 1
-  const user = await context.prisma.user({ email: args.email })
-  if (!user) {
-    throw new Error('No such user found')
-  }
-
-  // 2
-  const valid = await bcrypt.compare(args.password, user.password)
-  if (!valid) {
-    throw new Error('Invalid password')
-  }
-
-  const token = jwt.sign({ userId: user.id }, APP_SECRET)
-
-  // 3
-  return {
-    token,
-    user,
-  }
+const Mutation = {
+  signup: async (parent, { name, email, password }, context) => {
+    const hashedPassword = await hash(password, 10)
+    const user = await context.prisma.createUser({
+      name,
+      email,
+      password: hashedPassword,
+    })
+    return {
+      token: sign({ userId: user.id }, APP_SECRET),
+      user,
+    }
+  },
+  login: async (parent, { email, password }, context) => {
+    const user = await context.prisma.user({ email })
+    if (!user) {
+      throw new Error(`No user found for email: ${email}`)
+    }
+    const passwordValid = await compare(password, user.password)
+    if (!passwordValid) {
+      throw new Error('Invalid password')
+    }
+    return {
+      token: sign({ userId: user.id }, APP_SECRET),
+      user,
+    }
+  },
+  createDraft: async (parent, { title, content }, context) => {
+    const userId = getUserId(context)
+  
+    return context.prisma.createPost({
+      title,
+      content,
+      author: { connect: { id: userId } },
+    })
+  },
+  deletePost: async (parent, { id }, context) => {
+    return context.prisma.deletePost({ id })
+  },
+  publish: async (parent, { id }, context) => {
+    return context.prisma.updatePost({
+      where: { id },
+      data: { published: true },
+    })
+  },
 }
 
 module.exports = {
-  signup,
-  login,
-  post,
+  Mutation,
 }
