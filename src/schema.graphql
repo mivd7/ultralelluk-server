@@ -19,7 +19,8 @@ type Query {
 }
 
 type Mutation {
-  signupUser(email: String!, name: String): User!
+  signup(email: String!, name: String, password: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
   createDraft(title: String!, content: String!, published: Boolean!, userId: ID!): Post!
   createCalendarItem(date: String!, time: String!, description: String!, gigId: ID): CalendarItem!
   deleteCalendarItem(id: ID!): CalendarItem
@@ -86,4 +87,9 @@ type Media {
   event: Gig!
   comments: [Comment!]
   isVideo: Boolean
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
 }
