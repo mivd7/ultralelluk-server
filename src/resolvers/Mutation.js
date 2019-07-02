@@ -29,12 +29,15 @@ const Mutation = {
       user,
     }
   },
-  createDraft: async (parent, { title, content }, context) => {
+  createDraft: async (parent, { title, content, published }, context) => {
+    console.log(title)
+    console.log(content)
     const userId = getUserId(context)
   
     return context.prisma.createPost({
       title,
       content,
+      published,
       author: { connect: { id: userId } },
     })
   },
