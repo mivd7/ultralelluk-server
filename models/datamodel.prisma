@@ -44,9 +44,10 @@ type Comment {
 
 type Media {
   id: ID! @id
-  url: String!
+  src: String!
   caption: String
   event: Gig!
   comments: [Comment!]
+  submittedBy: User!
   isVideo: Boolean @default(value: false)
 }

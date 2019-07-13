@@ -50,6 +50,17 @@ const Mutation = {
       data: { published: true },
     })
   },
+  createMedia: async (parent, { src, caption, isVideo }, context) => {
+
+    const userId = getUserId(context)
+  
+    return context.prisma.createMedia({
+      src,
+      caption,
+      isVideo,
+      submittedBy: {connect: {id: userId}}
+    })
+  },
 }
 
 module.exports = {

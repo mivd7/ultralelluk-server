@@ -9,7 +9,10 @@ type Query {
   # feedPosts: [Post!]!
   # feedCalendar: [CalendarItem!]!
   # feedCalendarItem: CalendarItem
-  # feedAllMedia: [Media!]!
+  feedAllMedia: [Media!]!
+  photo(id: ID!, isVideo: Boolean): [Media!]!
+  video(id: ID!, isVideo: Boolean): [Media!]!
+
   # searchPhoto(searchString: String): [Media!]!
   # searchVideo(searchString: String): [Media!]!
   # searchCalendarItem(searchString: String): [CalendarItem!]!
@@ -24,6 +27,7 @@ type Query {
 
 type Mutation {
   createDraft(title: String!, content: String, published: Boolean!): Post!
+  createMedia(src: String!, caption: String, isVideo: Boolean! ): Media!
   deletePost(id: ID!): Post
   publish(id: ID!): Post
   signup(email: String!, password: String!, name: String): AuthPayload!
@@ -94,10 +98,11 @@ type Comment {
 
 type Media {
   id: ID!
-  url: String!
+  src: String!
   caption: String
-  event: Gig!
+  event: Gig
   comments: [Comment!]
+  submittedBy: User!
   isVideo: Boolean
 }
 

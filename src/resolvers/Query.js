@@ -8,6 +8,9 @@ const Query = {
   feed: (parent, args, context) => {
     return context.prisma.posts({ where: { published: true } })
   },
+  feedAllMedia: (parent, args, context) => {
+    return context.prisma.media()
+  },
   filterPosts: (parent, { searchString }, context) => {
     return context.prisma.posts({
       where: {
@@ -25,6 +28,20 @@ const Query = {
   post: (parent, { id }, context) => {
     return context.prisma.post({ id })
   },
+  photo: (parent, {id}, context) => {
+    return context.prisma.media({
+      id,
+      where: {
+        isVideo: false
+    }})
+  },
+  video: (parent, {id}, context) => {
+    return context.prisma.media({
+      id,
+      where: {
+        isVideo: true
+    }})
+  }
 }
 
 module.exports = {
