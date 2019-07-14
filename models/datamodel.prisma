@@ -4,7 +4,8 @@ type User {
   password: String!
   name: String
   posts: [Post!]!
-  comments: [Comment!]!
+  media: [Media!]
+  comments: [Comment!]
   shows: [Gig!]
 }
 
@@ -29,25 +30,23 @@ type Gig {
   participants: [User!]!
   comments: [Comment!]
   media: [Media!]!
-  calendarItem: CalendarItem! 
-}
-
-type CalendarItem {
-  _id: ID! @id
 }
 
 type Comment {
   id: ID! @id
   text: String!
   writtenBy: User!
+  media: Media
+  post: Post
+  gig: Gig
 }
 
 type Media {
   id: ID! @id
   src: String!
   caption: String
-  event: Gig!
+  catogories: String
   comments: [Comment!]
-  submittedBy: User!
+  submittedBy: User
   isVideo: Boolean @default(value: false)
 }

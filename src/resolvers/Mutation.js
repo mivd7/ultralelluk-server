@@ -52,13 +52,13 @@ const Mutation = {
   },
   createMedia: async (parent, { src, caption, isVideo }, context) => {
 
-    const userId = getUserId(context)
+    // const userId = getUserId(context)
   
     return context.prisma.createMedia({
       src,
       caption,
       isVideo,
-      submittedBy: {connect: {id: userId}}
+      // submittedBy: {connect: {id: userId}}
     })
   },
 }

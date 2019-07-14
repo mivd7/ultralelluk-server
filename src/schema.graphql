@@ -9,7 +9,8 @@ type Query {
   # feedPosts: [Post!]!
   # feedCalendar: [CalendarItem!]!
   # feedCalendarItem: CalendarItem
-  feedAllMedia: [Media!]!
+  feedPhotos: [Media!]!
+  feedVideos: [Media!]!
   photo(id: ID!, isVideo: Boolean): [Media!]!
   video(id: ID!, isVideo: Boolean): [Media!]!
 
@@ -100,8 +101,8 @@ type Media {
   id: ID!
   src: String!
   caption: String
-  event: Gig
   comments: [Comment!]
+  categories: [String!]
   submittedBy: User!
   isVideo: Boolean
 }

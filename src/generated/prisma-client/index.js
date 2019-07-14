@@ -5,17 +5,29 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 var models = [
   {
+    name: "User",
+    embedded: false
+  },
+  {
     name: "Post",
     embedded: false
   },
   {
-    name: "User",
+    name: "Gig",
+    embedded: false
+  },
+  {
+    name: "Comment",
+    embedded: false
+  },
+  {
+    name: "Media",
     embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://eu1.prisma.sh/max-van-deurzen-23f2dc/graphql-auth/dev`
+  endpoint: `http://localhost:4466`
 });
 exports.prisma = new exports.Prisma();

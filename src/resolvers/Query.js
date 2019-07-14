@@ -8,8 +8,11 @@ const Query = {
   feed: (parent, args, context) => {
     return context.prisma.posts({ where: { published: true } })
   },
-  feedAllMedia: (parent, args, context) => {
-    return context.prisma.media()
+  feedPhotos: (parent, args, context) => {
+    return context.prisma.medias({where: {isVideo: false}})
+  },
+  feedVideos: (parent, args, context) => {
+    return context.prisma.medias({where: {isVideo: true}})
   },
   filterPosts: (parent, { searchString }, context) => {
     return context.prisma.posts({
